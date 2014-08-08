@@ -1,0 +1,1 @@
+web: java $JVM_OPTS -cp target/odo-standalone.jar clojure.main -m odo.handler $PORT

@@ -8,4 +8,5 @@
                  [ring/ring-jetty-adapter "1.2.0"]]
   :ring {:handler odo.handler/app}
   :main ^:skip-aot odo.handler
+  :uberjar-name "odo-standalone.jar"
   :min-lein-version "2.4.3")
