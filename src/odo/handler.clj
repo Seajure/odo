@@ -16,7 +16,7 @@
 
 (defn become [artifact handler]
   (add-dependencies :coordinates [(read-string artifact)] ; hahahaha
-                    :repositories {"clojars" "http://clojars.org/repo"})
+                    :repositories {"clojars" "https://clojars.org/repo"})
   (let [s (symbol handler)]
     (require (symbol (namespace s)))
     (reset! app (deref (resolve s)))))
