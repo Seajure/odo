@@ -17,7 +17,8 @@
     (prn :requiring sn)
     (require sn)
     (alter-var-root #'app (constantly (deref (resolve s))))
-    (prn :altered)))
+    (prn :altered)
+    (app {})))
 
 (defroutes app-routes
   (GET "/" [] (slurp (io/resource "public/index.html")))
