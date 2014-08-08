@@ -5,7 +5,6 @@ Shape-shift into other web applications.
 ## Todo
 
 * Read handler out of project.clj file
-* Revert mechanism
 * Pending page
 * Error handling
 * Sandboxing?
