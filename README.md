@@ -5,7 +5,7 @@ Shape-shift into other web applications.
 ## Todo
 
 * Read handler out of project.clj file
-* Pending page
+* Nicer-looking pending page
 * Error handling
 * Sandboxing?
 * Close over initial functionality to prevent redefinition?

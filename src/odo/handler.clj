@@ -9,6 +9,9 @@
 (def redirect-to-slash {:status 302 :content "redirecting"
                         :headers {:content-type "text/plain" :location "/"}})
 
+(def pending {:status 200 :content "pending, please wait"
+              :headers {:content-type "text/plain"}})
+
 (def app (atom {}))
 
 (defn become [artifact handler]
@@ -16,12 +19,14 @@
                     :repositories {"clojars" "http://clojars.org/repo"})
   (let [s (symbol handler)]
     (require (symbol (namespace s)))
-    (reset! app (deref (resolve s)))
-    redirect-to-slash))
+    (reset! app (deref (resolve s)))))
 
 (defroutes odo-routes
   (GET "/" [] (slurp (io/resource "public/index.html")))
-  (POST "/" [dep handler] (become dep handler))
+  (POST "/" [dep handler]
+        (reset! app pending)
+        (future (become dep handler))
+        redirect-to-slash)
   (route/not-found "Not Found"))
 
 (def odo (handler/site odo-routes))
