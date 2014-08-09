@@ -24,7 +24,7 @@
 (defroutes odo-routes
   (GET "/" [] (slurp (io/resource "public/index.html")))
   (POST "/" [dep handler]
-        (reset! app pending)
+        (reset! app (constantly pending))
         (future (become dep handler))
         redirect-to-slash)
   (route/not-found "Not Found"))
